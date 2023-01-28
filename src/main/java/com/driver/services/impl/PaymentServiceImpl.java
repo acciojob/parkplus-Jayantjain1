@@ -23,7 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
         //If the mode contains a string other than "cash", "card", or "upi" (any character in uppercase or lowercase), throw "Payment mode not detected" exception.
         //Note that the reservationId always exists
         Reservation reservation = reservationRepository2.findById(reservationId).get();
-        Payment payment = reservation.getPayment();
+        Payment payment = new Payment();  //This is throwing null because i didn't set payment  while adding eveything in payment
         String payment1 = "CASH",payment2 = "CARD",payment3 = "UPI";
         mode = mode.toUpperCase();
         if(reservation.getNumberOfHours() * reservation.getSpot().getPricePerHour() > amountSent){
@@ -44,6 +44,7 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setPaymentCompleted(true);
         payment.setReservation(reservation);
         reservation.setPayment(payment);
+        reservation.getSpot().setOccupied(true);
         reservationRepository2.save(reservation);
         return payment;
     }
