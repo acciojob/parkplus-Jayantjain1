@@ -78,32 +78,23 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 //    TestCases.pay_validInput_success1:657 » NullPointer
     @Override
     public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) {
-//        Spot updatedSpot = spotRepository1.findById(spotId).get();
+        Spot updatedSpot = spotRepository1.findById(spotId).get();
         ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
+        updatedSpot.setOccupied(false);
+        updatedSpot.setPricePerHour(pricePerHour);
         List<Spot> spotList = parkingLot.getSpotList();
-        Spot spot = null;
-        for(Spot spot1: spotList){
-            if(spot1.getId() == spotId){
-                spot = spot1;
-                break;
-            }
-        }
-        spot.setPricePerHour(pricePerHour);
-        spot.setOccupied(true);
-        spotList.add(spot);
+        spotList.add(updatedSpot);
         parkingLot.setSpotList(spotList);
 
-        spot.setParkingLot(parkingLot);
+        updatedSpot.setParkingLot(parkingLot);
 
         parkingLotRepository1.save(parkingLot);
-        return spot;
+        return updatedSpot;
     }
 
     @Override
     public void deleteParkingLot(int parkingLotId) {
-        if(parkingLotRepository1.existsById(parkingLotId)){
-            parkingLotRepository1.deleteById(parkingLotId);
-        }
+        parkingLotRepository1.deleteById(parkingLotId);
 //        ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
 //        List<Spot> spots = parkingLot.getSpotList();
 //        for(Spot spot: spots){
