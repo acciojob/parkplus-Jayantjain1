@@ -31,7 +31,7 @@ public class ReservationServiceImpl implements ReservationService {
         int minPrice = Integer.MAX_VALUE;
         List<Spot> spotList = parkingLot.getSpotList();
         Spot spot = null;
-        if(numberOfWheels == 2){
+        if(numberOfWheels <= 2){
             for(Spot spot1: spotList){
                 if(spot1.getPricePerHour() * timeInHours < minPrice){
                     minPrice = spot1.getPricePerHour()*timeInHours;
@@ -40,7 +40,7 @@ public class ReservationServiceImpl implements ReservationService {
             }
             spot.setSpotType(SpotType.TWO_WHEELER);
         }
-        else if(numberOfWheels == 4){
+        else if(numberOfWheels <= 4){
             for(Spot spot1: spotList){
                 if(spot1.getPricePerHour() * timeInHours < minPrice){
                     minPrice = spot1.getPricePerHour()*timeInHours;
