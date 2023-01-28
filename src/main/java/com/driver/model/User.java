@@ -13,7 +13,7 @@ public class User {
 
     private String name;
     private String password;
-    private String phoneNo;
+    private String PhoneNumber;
 
     public User() {
 
@@ -27,9 +27,7 @@ public class User {
         this.password = password;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
-    }
+
 
     public String getName() {
         return name;
@@ -39,14 +37,18 @@ public class User {
         return password;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public String getPhoneNumber() {
+        return PhoneNumber;
     }
 
-    public User(String name, String password, String phoneNo) {
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
+
+    public User(String name, String password, String PhoneNumber) {
         this.name = name;
         this.password = password;
-        this.phoneNo = phoneNo;
+        this.PhoneNumber = PhoneNumber;
     }
 
     public int getId() {

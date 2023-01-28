@@ -48,7 +48,7 @@ public class Spot {
         return pricePerHour;
     }
 
-    public boolean isOccupied() {
+    public boolean getOccupied() {
         return occupied;
     }
 
