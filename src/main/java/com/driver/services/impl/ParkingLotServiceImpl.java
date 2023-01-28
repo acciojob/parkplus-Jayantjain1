@@ -63,35 +63,53 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         List<Spot> spotList = spot.getParkingLot().getSpotList();
         for(Spot spot1: spotList){
             if(spot1.getId() == spotId){
-                spotList.remove(spot1);
+                spotRepository1.delete(spot1);
             }
         }
     }
-
+//    TestCases.testAddParkingLot:75 NullPointer
+//    TestCases.testDeleteSpot:155 » NoSuchElement No value present
+//    TestCases.testUpdateSpot:185 » NoSuchElement No value present
+//    TestCases.testUpdateSpot1:224 » NoSuchElement No value present
+//    TestCases.testDeleteParkingLot:249 » NoSuchElement No value present
+//    TestCases.deleteUser_validInput_userDeleted:258 » NoSuchElement No value prese...
+//    TestCases.updatePassword_validInput_passwordUpdated:276 NullPointer
+//    TestCases.pay_validInput_success:635 » NullPointer
+//    TestCases.pay_validInput_success1:657 » NullPointer
     @Override
     public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) {
-        Spot updatedSpot = spotRepository1.findById(spotId).get();
+//        Spot updatedSpot = spotRepository1.findById(spotId).get();
         ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
-        updatedSpot.setOccupied(false);
-        updatedSpot.setPricePerHour(pricePerHour);
         List<Spot> spotList = parkingLot.getSpotList();
-        spotList.add(updatedSpot);
+        Spot spot = null;
+        for(Spot spot1: spotList){
+            if(spot1.getId() == spotId){
+                spot = spot1;
+                break;
+            }
+        }
+        spot.setPricePerHour(pricePerHour);
+        spot.setOccupied(true);
+        spotList.add(spot);
         parkingLot.setSpotList(spotList);
 
-        updatedSpot.setParkingLot(parkingLot);
+        spot.setParkingLot(parkingLot);
 
         parkingLotRepository1.save(parkingLot);
-        return updatedSpot;
+        return spot;
     }
 
     @Override
     public void deleteParkingLot(int parkingLotId) {
-        ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
+        if(parkingLotRepository1.existsById(parkingLotId)){
+            parkingLotRepository1.deleteById(parkingLotId);
+        }
+//        ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
 //        List<Spot> spots = parkingLot.getSpotList();
 //        for(Spot spot: spots){
 //            spots.remove(spot);
 //        }
-        parkingLotRepository1.delete(parkingLot);
+//        parkingLotRepository1.delete(parkingLot);
     }
 }
 
