@@ -16,6 +16,14 @@ public class Payment {
         return reservation;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
     }

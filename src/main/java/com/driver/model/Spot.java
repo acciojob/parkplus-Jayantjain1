@@ -14,6 +14,11 @@ public class Spot {
     @Enumerated(value = EnumType.STRING)
     private SpotType spotType;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     public Spot(){
 
     }

@@ -49,6 +49,14 @@ public class User {
         this.phoneNo = phoneNo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setReservationList(List<Reservation> reservationList) {
         this.reservationList = reservationList;
     }

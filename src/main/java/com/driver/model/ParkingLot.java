@@ -36,6 +36,14 @@ public class ParkingLot {
         return address;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @OneToMany(mappedBy = "parkingLot" , cascade = CascadeType.ALL)
     private List<Spot> spotList;
 
