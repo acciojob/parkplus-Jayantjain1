@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
     public void register(String name, String phoneNumber, String password) {
         User user = new User();
         user.setName(name);
-        user.setPhoneNo(phoneNumber);
-        user.setPhoneNo(phoneNumber);
+        user.setPassword(password);
+        user.setPhoneNumber(phoneNumber);
         userRepository4.save(user);
     }
 }
